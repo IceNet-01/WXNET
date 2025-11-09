@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     author="WXNET Development Team",
     author_email="dev@wxnet.example.com",
-    url="https://github.com/your-repo/WXNET",
+    url="https://github.com/IceNet-01/WXNET",
     packages=find_packages(),
     install_requires=requirements,
     entry_points={
