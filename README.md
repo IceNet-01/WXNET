@@ -91,7 +91,7 @@ Essential data for severe weather analysis:
 The easiest way to install WXNET:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/claude/weather-monitoring-terminal-011CUxi4g9UvRcxQaB6Yc3qQ/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/main/install.sh | bash
 ```
 
 ### Manual Installation

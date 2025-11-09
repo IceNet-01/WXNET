@@ -5,7 +5,8 @@ Get up and running with WXNET in under 5 minutes!
 ## 1. Install (One Command)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/claude/weather-monitoring-terminal-011CUxi4g9UvRcxQaB6Yc3qQ/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/main/install.sh | bash
+
 ```
 
 **Or** if you've cloned the repository:
