@@ -140,7 +140,7 @@ create_launcher() {
 
     cat > "$BIN_DIR/wxnet" << 'EOF'
 #!/usr/bin/env bash
-# WXNET Launcher
+# WXNET Terminal Launcher (Legacy)
 
 INSTALL_DIR="$HOME/.wxnet"
 cd "$INSTALL_DIR"
@@ -151,7 +151,21 @@ EOF
 
     chmod +x "$BIN_DIR/wxnet"
 
-    print_msg "$GREEN" "✓ Launcher created"
+    # Create GUI launcher
+    cat > "$BIN_DIR/wxnet-gui" << 'EOF'
+#!/usr/bin/env bash
+# WXNET Desktop GUI Launcher
+
+INSTALL_DIR="$HOME/.wxnet"
+cd "$INSTALL_DIR"
+source venv/bin/activate
+python3 wxnet-gui.py "$@"
+deactivate
+EOF
+
+    chmod +x "$BIN_DIR/wxnet-gui"
+
+    print_msg "$GREEN" "✓ Launchers created (wxnet, wxnet-gui)"
 }
 
 # Create configuration file
@@ -306,13 +320,16 @@ print_success() {
     print_msg "$BLUE" "  1. Configure your location:"
     print_msg "$NC" "     Edit $INSTALL_DIR/.env"
     echo ""
-    print_msg "$BLUE" "  2. Run WXNET:"
+    print_msg "$BLUE" "  2. Run WXNET Desktop GUI (recommended):"
+    print_msg "$NC" "     wxnet-gui"
+    echo ""
+    print_msg "$BLUE" "  3. Run WXNET Terminal (legacy):"
     print_msg "$NC" "     wxnet"
     echo ""
-    print_msg "$BLUE" "  3. Update WXNET:"
+    print_msg "$BLUE" "  4. Update WXNET:"
     print_msg "$NC" "     wxnet-update"
     echo ""
-    print_msg "$BLUE" "  4. Uninstall WXNET:"
+    print_msg "$BLUE" "  5. Uninstall WXNET:"
     print_msg "$NC" "     wxnet-uninstall"
     echo ""
     print_msg "$YELLOW" "Note: You may need to run 'source ~/.bashrc' or restart your terminal"

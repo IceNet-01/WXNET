@@ -1,4 +1,7 @@
-# Core TUI and utilities
+# GUI Framework
+PyQt6>=6.6.0
+
+# Core TUI and utilities (legacy terminal interface)
 textual>=0.47.0
 rich>=13.7.0
 requests>=2.31.0

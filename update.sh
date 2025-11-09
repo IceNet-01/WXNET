@@ -115,6 +115,24 @@ perform_update() {
 
     print_msg "$GREEN" "✓ Dependencies updated"
 
+    # Update GUI launcher if needed
+    BIN_DIR="$HOME/.local/bin"
+    if [ ! -f "$BIN_DIR/wxnet-gui" ]; then
+        print_msg "$YELLOW" "Creating GUI launcher..."
+        cat > "$BIN_DIR/wxnet-gui" << 'LAUNCHER_EOF'
+#!/usr/bin/env bash
+# WXNET Desktop GUI Launcher
+
+INSTALL_DIR="$HOME/.wxnet"
+cd "$INSTALL_DIR"
+source venv/bin/activate
+python3 wxnet-gui.py "$@"
+deactivate
+LAUNCHER_EOF
+        chmod +x "$BIN_DIR/wxnet-gui"
+        print_msg "$GREEN" "✓ GUI launcher created"
+    fi
+
     # Restore config if backed up
     if [ -f .env.backup ]; then
         mv .env.backup .env
@@ -129,6 +147,12 @@ perform_update() {
     # Show new version
     NEW_VERSION=$(git describe --tags --always 2>/dev/null || echo "unknown")
     print_msg "$BLUE" "Updated to version: $NEW_VERSION"
+    echo ""
+
+    print_msg "$YELLOW" "What's New:"
+    print_msg "$BLUE" "  • Desktop GUI now available! Run with: wxnet-gui"
+    print_msg "$BLUE" "  • Professional PyQt6 interface with tabbed layout"
+    print_msg "$BLUE" "  • Terminal interface still available: wxnet"
     echo ""
 }
 
