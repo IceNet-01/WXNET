@@ -255,9 +255,9 @@ class AtmosphericPanel(Static):
 class SPCProductsPanel(Static):
     """Panel for SPC products."""
 
-    outlook: reactive[Optional[Dict]] = reactive(None)
-    mds: reactive[List[Dict]] = reactive(list)
-    watches: reactive[List[Dict]] = reactive(list)
+    outlook: reactive[Optional[Dict]] = reactive(None, recompose=True)
+    mds: reactive[List[Dict]] = reactive(list, recompose=True)
+    watches: reactive[List[Dict]] = reactive(list, recompose=True)
 
     def compose(self) -> ComposeResult:
         """Compose SPC products display."""
@@ -328,8 +328,8 @@ class SPCProductsPanel(Static):
 class LightningPanel(Static):
     """Panel for lightning data."""
 
-    strikes: reactive[List[LightningStrike]] = reactive(list)
-    analysis: reactive[Optional[Dict]] = reactive(None)
+    strikes: reactive[List[LightningStrike]] = reactive(list, recompose=True)
+    analysis: reactive[Optional[Dict]] = reactive(None, recompose=True)
 
     def compose(self) -> ComposeResult:
         """Compose lightning display."""
@@ -379,25 +379,26 @@ class LightningPanel(Static):
 class GPSPanel(Static):
     """Panel for GPS and chase info."""
 
-    location: reactive[Optional[Location]] = reactive(None)
-    gps_enabled: reactive[bool] = reactive(False)
+    location: reactive[Optional[Location]] = reactive(None, recompose=True)
+    gps_enabled: reactive[bool] = reactive(False, recompose=True)
 
     def compose(self) -> ComposeResult:
         """Compose GPS display."""
-        if not self.gps_enabled:
-            yield Label("[dim]GPS tracking disabled. Enable in config.[/dim]")
-        elif not self.location:
-            yield Label("[yellow]GPS: Acquiring satellite fix...[/yellow]")
-        else:
-            gps_text = Text()
-            gps_text.append("📍 GPS LOCATION\n\n", style="bold green")
-            gps_text.append(f"Latitude: {self.location.latitude:.6f}°N\n", style="cyan")
-            gps_text.append(f"Longitude: {self.location.longitude:.6f}°W\n", style="cyan")
-            if self.location.elevation:
-                gps_text.append(f"Elevation: {self.location.elevation:.0f} ft\n", style="cyan")
-            gps_text.append(f"\nTracking active ✓", style="green")
+        with VerticalScroll():
+            if not self.gps_enabled:
+                yield Label("[dim]GPS tracking disabled. Enable in config.[/dim]")
+            elif not self.location:
+                yield Label("[yellow]GPS: Acquiring satellite fix...[/yellow]")
+            else:
+                gps_text = Text()
+                gps_text.append("📍 GPS LOCATION\n\n", style="bold green")
+                gps_text.append(f"Latitude: {self.location.latitude:.6f}°N\n", style="cyan")
+                gps_text.append(f"Longitude: {self.location.longitude:.6f}°W\n", style="cyan")
+                if self.location.elevation:
+                    gps_text.append(f"Elevation: {self.location.elevation:.0f} ft\n", style="cyan")
+                gps_text.append(f"\nTracking active ✓", style="green")
 
-            yield Static(gps_text)
+                yield Static(gps_text)
 
 
 class WXNETApp(App):
