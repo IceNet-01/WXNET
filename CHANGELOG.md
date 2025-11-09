@@ -130,4 +130,4 @@ This is the initial release, no migration needed.
 
 ---
 
-For detailed information about each release, see the [GitHub Releases](https://github.com/your-repo/WXNET/releases) page.
+For detailed information about each release, see the [GitHub Releases](https://github.com/IceNet-01/WXNET/releases) page.

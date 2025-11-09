@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ###############################################################################
 # WXNET Installer
-# One-line install: curl -sSL https://raw.githubusercontent.com/your-repo/WXNET/main/install.sh | bash
+# One-line install: curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/claude/weather-monitoring-terminal-011CUxi4g9UvRcxQaB6Yc3qQ/install.sh | bash
 ###############################################################################
 
 set -e
@@ -16,7 +16,7 @@ NC='\033[0m' # No Color
 # Configuration
 INSTALL_DIR="$HOME/.wxnet"
 BIN_DIR="$HOME/.local/bin"
-REPO_URL="https://github.com/your-repo/WXNET.git"
+REPO_URL="https://github.com/IceNet-01/WXNET.git"
 
 # Print colored message
 print_msg() {
