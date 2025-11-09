@@ -131,6 +131,40 @@ deactivate
 LAUNCHER_EOF
         chmod +x "$BIN_DIR/wxnet-gui"
         print_msg "$GREEN" "✓ GUI launcher created"
+
+        # Ensure ~/.local/bin is in PATH
+        if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
+            print_msg "$YELLOW" "Adding $BIN_DIR to PATH..."
+
+            # Determine shell config file
+            SHELL_CONFIG=""
+            if [ -n "$BASH_VERSION" ]; then
+                SHELL_CONFIG="$HOME/.bashrc"
+            elif [ -n "$ZSH_VERSION" ]; then
+                SHELL_CONFIG="$HOME/.zshrc"
+            else
+                # Try to detect
+                if [ -f "$HOME/.bashrc" ]; then
+                    SHELL_CONFIG="$HOME/.bashrc"
+                elif [ -f "$HOME/.zshrc" ]; then
+                    SHELL_CONFIG="$HOME/.zshrc"
+                fi
+            fi
+
+            if [ -n "$SHELL_CONFIG" ]; then
+                # Check if already added
+                if ! grep -q "export PATH=\"\$HOME/.local/bin:\$PATH\"" "$SHELL_CONFIG" 2>/dev/null; then
+                    echo "" >> "$SHELL_CONFIG"
+                    echo "# WXNET" >> "$SHELL_CONFIG"
+                    echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$SHELL_CONFIG"
+                    print_msg "$GREEN" "✓ Added to PATH in $SHELL_CONFIG"
+                    print_msg "$YELLOW" "  Run: source $SHELL_CONFIG"
+                fi
+            else
+                print_msg "$YELLOW" "⚠ Could not detect shell config. Add to PATH manually:"
+                print_msg "$NC" "    export PATH=\"\$HOME/.local/bin:\$PATH\""
+            fi
+        fi
     fi
 
     # Restore config if backed up
@@ -154,6 +188,18 @@ LAUNCHER_EOF
     print_msg "$BLUE" "  • Professional PyQt6 interface with tabbed layout"
     print_msg "$BLUE" "  • Terminal interface still available: wxnet"
     echo ""
+
+    # Check if user needs to source config
+    BIN_DIR="$HOME/.local/bin"
+    if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
+        print_msg "$YELLOW" "⚠ IMPORTANT: Run the following to use wxnet-gui:"
+        if [ -f "$HOME/.bashrc" ]; then
+            print_msg "$NC" "    source ~/.bashrc"
+        elif [ -f "$HOME/.zshrc" ]; then
+            print_msg "$NC" "    source ~/.zshrc"
+        fi
+        echo ""
+    fi
 }
 
 main() {
