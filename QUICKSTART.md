@@ -6,6 +6,7 @@ Get up and running with WXNET in under 5 minutes!
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/main/install.sh | bash
+
 ```
 
 **Or** if you've cloned the repository:
