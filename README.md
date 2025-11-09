@@ -1,13 +1,21 @@
-# WXNET - Severe Weather Monitoring Terminal
+# WXNET - Professional Severe Weather Monitoring System
 
 ```
 ╔════════════════════════════════════════════════════════════╗
-║        WXNET - Severe Weather Monitoring Terminal         ║
+║           WXNET - Severe Weather Monitoring               ║
 ║           Real-time Storm Tracking & Analysis             ║
+║         🖥️  Desktop GUI  |  💻 Terminal Interface          ║
 ╚════════════════════════════════════════════════════════════╝
 ```
 
-A comprehensive terminal-based severe weather monitoring, alert, and tracking system designed for storm chasers, weather enthusiasts, and emergency management professionals. Built with a beautiful TUI (Terminal User Interface) inspired by NomadNet.
+A comprehensive severe weather monitoring, alert, and tracking system designed for storm chasers, weather enthusiasts, and emergency management professionals.
+
+**NEW: Desktop GUI Edition!** WXNET now features a professional PyQt6-based desktop application with rich visualizations, alongside the classic terminal interface.
+
+## 🎯 Two Interfaces, Same Power
+
+- **🖥️ Desktop GUI (Recommended)** - Beautiful PyQt6 application with resizable panels, tabbed interface, and rich HTML formatting
+- **💻 Terminal Interface (Legacy)** - Textual-based TUI for terminal purists and remote access
 
 ## Features
 
@@ -121,6 +129,35 @@ curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/main/install.sh | ba
 - **Internet connection** (for weather data)
 
 The installer will check for these and guide you through any missing dependencies.
+
+## Running WXNET
+
+After installation, you can launch WXNET in two ways:
+
+### Desktop GUI (Recommended)
+
+```bash
+wxnet-gui
+```
+
+Features a professional PyQt6 interface with:
+- Resizable split panels
+- Tabbed layout (Overview, SPC Products, Lightning, GPS/Chase)
+- Rich HTML formatting with color-coded alerts
+- Auto-refresh timers
+- Menu bar and toolbar
+- Beautiful dark theme
+
+### Terminal Interface (Legacy)
+
+```bash
+wxnet
+```
+
+Classic Textual-based TUI for:
+- Remote SSH sessions
+- Terminal purists
+- Headless/server environments
 
 ## Configuration
 
