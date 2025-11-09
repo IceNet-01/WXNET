@@ -91,14 +91,14 @@ Essential data for severe weather analysis:
 The easiest way to install WXNET:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/your-repo/WXNET/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/IceNet-01/WXNET/main/install.sh | bash
 ```
 
 ### Manual Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-repo/WXNET.git
+   git clone https://github.com/IceNet-01/WXNET.git
    cd WXNET
    ```
 
@@ -474,8 +474,8 @@ Created for storm chasers, by storm chasers.
 
 ## Support
 
-- **Issues**: https://github.com/your-repo/WXNET/issues
-- **Discussions**: https://github.com/your-repo/WXNET/discussions
+- **Issues**: https://github.com/IceNet-01/WXNET/issues
+- **Discussions**: https://github.com/IceNet-01/WXNET/discussions
 - **Email**: support@wxnet.example.com
 
 ## Changelog

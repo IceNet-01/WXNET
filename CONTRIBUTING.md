@@ -38,6 +38,9 @@ Thank you for your interest in contributing to WXNET! This document provides gui
 ## Development Setup
 
 ### 1. Fork and Clone
+First, fork the repository on GitHub: https://github.com/IceNet-01/WXNET
+
+Then clone your fork:
 ```bash
 git clone https://github.com/YOUR-USERNAME/WXNET.git
 cd WXNET
