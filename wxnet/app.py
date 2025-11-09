@@ -572,6 +572,24 @@ class WXNETApp(App):
         # Initial data load
         await self.refresh_all_data()
 
+    async def on_unmount(self) -> None:
+        """Handle unmount event - cleanup resources."""
+        # Close all HTTP client sessions
+        if self.nws_client and self.nws_client.session:
+            await self.nws_client.session.close()
+        if self.nexrad_client and self.nexrad_client.session:
+            await self.nexrad_client.session.close()
+        if self.spc_client and self.spc_client.session:
+            await self.spc_client.session.close()
+        if self.lightning_client and self.lightning_client.session:
+            await self.lightning_client.session.close()
+        if self.meso_client and self.meso_client.session:
+            await self.meso_client.session.close()
+
+        # Stop GPS tracking
+        if self.gps_tracker:
+            self.gps_tracker.stop_tracking()
+
     async def refresh_all_data(self) -> None:
         """Refresh all weather data."""
         await asyncio.gather(
